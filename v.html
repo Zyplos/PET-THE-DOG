@@ -1,0 +1,350 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <title>dog</title>
+  <style>
+    body,
+    html,
+    .center-inner,
+    .center-outer {
+      height: 100%;
+    }
+    
+    html {
+      position: absolute;
+    }
+    
+    body {
+      position: relative;
+    }
+
+    @font-face {
+      font-family: "8bitoperator";
+      src: url("8bitoperator.ttf");
+    }
+
+    body {
+      color: white;
+      background-color: black;
+      font-family: "8bitoperator", monospace;
+      margin: 0;
+      margin-top: 200px;
+      overflow: hidden;
+    }
+
+
+    .clicked {
+      -webkit-transition: all 0.2s;
+      -moz-transition: all 0.2s;
+      -o-transition: all 0.2s;
+      transition: all 0.2s;
+    }
+
+    .clicked {
+      transform: rotate(15deg);
+      -webkit-transform: rotate(15deg);
+      -moz-transform: rotate(15deg);
+      -o-transform: rotate(15deg);
+    }
+
+    #pets {
+      font-size: 42px;
+    }
+
+    #domain {
+      font-size: 42px;
+    }
+
+    @keyframes YELLING {
+      0% {
+        font-size: 4em;
+      }
+      50% {
+        font-size: 5em;
+      }
+      100% {
+        font-size: 4em;
+      }
+    }
+
+    @-moz-keyframes spin {
+      from {
+        -moz-transform: rotate(0deg);
+      }
+      to {
+        -moz-transform: rotate(360deg);
+      }
+    }
+
+    @-webkit-keyframes spin {
+      from {
+        -webkit-transform: rotate(0deg);
+      }
+      to {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    #yelling {
+      height: 100px;
+      font-size: 4em;
+      animation-name: YELLING;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+    }
+
+    #HEYYELLING {
+      height: 150px;
+      font-size: 12em;
+      animation-name: YELLING;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+    }
+
+    #dog_div {
+      margin-top: 100px;
+    }
+
+    #dog {
+      cursor: pointer;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    #contactinfo {
+      color: #3d3d3d;
+      position: absolute;
+      font-size: 20px;
+      bottom: 220px;
+      right: 3%;
+    }
+
+
+    a:hover,
+    a:visited,
+    a:link,
+    a:active {
+      text-decoration: none;
+      color: white;
+    }
+
+    #petcount {
+      color: #90ffd8;
+    }
+
+    #peoplecount {
+      color: #c290ff;
+    }
+
+
+    .center-outer {
+      display: table;
+      margin: auto;
+    }
+
+    .center-inner {
+      /*display: table-cell;
+      vertical-align: middle;*/
+      text-align: center;
+    }
+
+    #unlock_desc {
+      margin: 100px;
+      text-align: left;
+      font-size: 32px;
+      margin-top: 20px;
+      padding: 30px;
+      border: 10px solid white;
+    }
+    
+    #grabby {
+      position: absolute;
+    top: -30px;
+    right: 45%;
+    opacity: 0;
+    }
+    
+    #dog_div {
+       position: relative; 
+    }
+    
+    #YELLING_SUBTEXT {
+      font-size: 1.5em;
+      
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="center-outer">
+    <div class="center-inner">
+      <div id="YELLING">
+        <span id="YELLING_TEXT">PET THE DOG!!!!!!!</span>
+      </div>
+      <!--<p id="YELLING_SUBTEXT">- NOW WITH MORE DOG - THERES ANOTHER DOG SOMEWHERE ELSE -</p>-->
+      <div>
+        <p id="domain">GO TO zyplos.net/dog</p>
+      </div>
+      <div>
+        <p id="pets">PETTED <span id="petcount"></span> TIMES</p>
+      </div>
+      <div id="dog_div">
+        <!--<img id="dog" src="dog_l_hat.png" style="animation: spin 1.13636s linear infinite;">-->
+        <img src="grabby.gif" id="grabby">
+        <img id="dog" src="dog_shake_slow.gif">
+      </div>
+
+      <!--<div id="unlock_desc">
+        <p>- UNLOCKABLES -</p>
+        <p style="color: #999;text-decoration: line-through">40,000 PETS: PETTING DEVICE GETS UPDATE</p>
+        <p>60,000 PETS: DOG GETS A MONOCLE</p>
+        <p>70,000 PETS: DOG GETS A BED</p>
+        <p>80,000 PETS: </p>
+        <p style="color: #999;text-decoration: line-through">150,000 PETS: ANOTHER DOG SHOWS UP</p>
+        <p style="color: #FFFEB3">400,000 PETS: GRAPHICS OVERHAUL [IN PROGRESS]</p>
+        <p>1 MILLION PETS: WE'LL PUT AN ACTUAL DOG BELOW THIS DISPLAY FOR PETTING*</p>
+        <p style="font-size: 15px">* NOT GUARANTEED</p>
+      </div>
+    </div>-->
+
+  </div>
+  <div id="contactinfo">
+    <a href="http://twitter.com/i_am_agm">originally by @i_am_agm (http://dogs.are.the.most.moe)</a>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+  <script>
+    //
+
+    var yellingSplashes = [{
+      "text": "HEY YOU!!!",
+      "duration": 2000
+    }, {
+      "text": "YEAH YOU!!",
+      "duration": 2000
+    }, {
+      "text": "PET ME",
+      "duration": 10000
+    }, {
+      "text": "PET THE DOG!!!!",
+      "duration": 10000
+    }, {
+      "text": "PET DOG",
+      "duration": 5000
+    }, {
+      "text": "EMBRACE DOG",
+      "duration": 5000
+    }, {
+      "text": "PET ME!!!",
+      "duration": 10000
+    }];
+
+    var currentSplashIndex = 0;
+
+    function playSplash() {
+
+      document.getElementById("YELLING_TEXT").innerHTML = yellingSplashes[currentSplashIndex].text;
+
+      setTimeout(playSplash, yellingSplashes[currentSplashIndex].duration);
+
+      if (currentSplashIndex >= (yellingSplashes.length - 1)) {
+        currentSplashIndex = 0;
+      }
+      else {
+        currentSplashIndex++;
+      }
+
+    }
+
+    playSplash();
+
+    var config = {
+      apiKey: "AIzaSyCXtXj2WUKlUqrSMbE37g1wYRF1jC6X-nI",
+      authDomain: "zysandbox.firebaseapp.com",
+      databaseURL: "https://zysandbox.firebaseio.com",
+      projectId: "zysandbox",
+      storageBucket: "zysandbox.appspot.com",
+      messagingSenderId: "100874609275"
+    };
+    firebase.initializeApp(config);
+    var dogRef = firebase.database().ref('dog/');
+    //
+
+    dog_site = {};
+
+    var currentPetCount = 0;
+    var currentPeopleCount = 0;
+
+    dogRef.once('value').then(function(data) {
+      currentPetCount = data.val().pets;
+      currentPeopleCount = data.val().people;
+      console.log(data.val().people);
+      dog_site.init();
+    });
+
+    //
+
+    dog_site.init = function() {
+      dog_site.dog = document.getElementById("dog");
+      dog_site.pet_count = document.getElementById("petcount");
+      /*dog_site.people_count = document.getElementById("peoplecount");*/
+      dog_site.pets = currentPetCount;
+      dog_site.people = currentPeopleCount;
+      dog.addEventListener("mousedown", dog_site.mousedown);
+      dog.addEventListener("mouseup", dog_site.mouseup);
+      dog_site.loop();
+    }
+
+
+
+    dog_site.loop = function() {
+      dog_site.pet_count.innerHTML = dog_site.pets;
+      //dog_site.people_count.innerHTML = dog_site.people;
+      setTimeout(dog_site.loop, 1000 / 60);
+    }
+
+    //
+
+    dogRef.child("pets").on("value", function(data) {
+      dog_site.pets = data.val();
+      //
+      document.getElementById("dog").style.animationDuration = "0.3636s";
+      document.getElementById("petcount").style.color = "yellow";
+      document.getElementById("grabby").style.opacity = 1;
+      document.getElementById("dog").src = "dog_shake_fast.gif";
+      setTimeout(function() {
+        document.getElementById("dog").style.animationDuration = "1.13636s";
+        document.getElementById("petcount").style.color = "#90ffd8";
+        document.getElementById("grabby").style.opacity = 0;
+        document.getElementById("dog").src = "dog_shake_slow.gif";
+      }, 1000);
+      //
+    });
+
+    dogRef.child("people").on("value", function(data) {
+      /*document.getElementById("peoplecount").style.color = "yellow";
+      setTimeout(function() {
+        document.getElementById("peoplecount").style.color = "#c290ff";
+      }, 500);*/
+      dog_site.people = data.val();
+    });
+  </script>
+
+
+</body>
+
+</html>

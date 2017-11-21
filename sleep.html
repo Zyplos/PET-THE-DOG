@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PET THE DOG</title>
+
+
+  <style>
+    @font-face {
+      font-family: "8bitoperator";
+      src: url("8bitoperator.ttf");
+    }
+
+    body {
+      color: white;
+      background-color: black;
+      font-family: "8bitoperator", monospace;
+      margin: 0;
+    }
+
+    .c:active {
+      color: yellow;
+      border: 10px solid yellow;
+    }
+
+    .c {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      color: #fff;
+      font-size: 50px;
+      text-align: center;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -o-user-select: none;
+      user-select: none;
+    }
+
+    @keyframes YELLING {
+      0% {
+        font-size: 3em;
+      }
+      50% {
+        font-size: 4em;
+      }
+      100% {
+        font-size: 3em;
+      }
+    }
+
+    @-moz-keyframes spin {
+      from {
+        -moz-transform: rotate(0deg);
+      }
+      to {
+        -moz-transform: rotate(360deg);
+      }
+    }
+
+    @-webkit-keyframes spin {
+      from {
+        -webkit-transform: rotate(0deg);
+      }
+      to {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    #yelling {
+      font-size: 14px;
+      animation-name: YELLING;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+    }
+    
+  
+  </style>
+
+</head>
+
+<body>
+
+
+
+  
+
+<img id="dog" src="dog_sleep.gif" class="c">
+
+
+
+  <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+  <script>
+    //
+
+    var config = {
+      apiKey: "AIzaSyCXtXj2WUKlUqrSMbE37g1wYRF1jC6X-nI",
+      authDomain: "zysandbox.firebaseapp.com",
+      databaseURL: "https://zysandbox.firebaseio.com",
+      projectId: "zysandbox",
+      storageBucket: "zysandbox.appspot.com",
+      messagingSenderId: "100874609275"
+    };
+    firebase.initializeApp(config);
+    var dogRef = firebase.database().ref('dog/');
+
+    var petStatus = false;
+
+    function tapEvent() {
+
+      if (!petStatus) {
+        dogRef.child("people").transaction(function(people) {
+
+          return people + 1;
+        });
+        petStatus = true;
+      }
+
+      dogRef.child("pets").transaction(function(pets) {
+
+        return pets + 1;
+      });
+    }
+
+
+    window.onload = function() {
+      document.querySelector(".c").addEventListener("mousedown", tapEvent);
+    }
+  </script>
+
+
+</body>
+
+</html>
